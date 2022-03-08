@@ -8,6 +8,7 @@ class Game():
         self.score = 0
         self.board = board
         self.cboard = board
+        self.huts=[]
         self.n=n
         self.m=m    
         
@@ -18,6 +19,10 @@ class Game():
     def addTownHall(self, townHall):
         self.townHall = townHall
         # self.cboard[self.townHall.y][self.townHall.x] = self.townHall.char
+    
+    def addHut(self, hut):
+        self.huts.append(hut)
+        # self.cboard[hut.y][hut.x] = hut.char
 
     def display(self):
         for i in range(self.m):
