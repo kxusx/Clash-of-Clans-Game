@@ -10,7 +10,14 @@ class Game():
         self.cboard = board
         self.n=n
         self.m=m    
-        # self.townHall= TownHall(self,15,15)
+        
+    def addKing(self, king):
+        self.king = king
+        # self.cboard[self.king.y][self.king.x] = self.king.char 
+    
+    def addTownHall(self, townHall):
+        self.townHall = townHall
+        # self.cboard[self.townHall.y][self.townHall.x] = self.townHall.char
 
     def display(self):
         for i in range(self.m):
