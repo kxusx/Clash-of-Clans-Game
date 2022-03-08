@@ -9,6 +9,7 @@ class Game():
         self.board = board
         self.cboard = board
         self.huts=[]
+        self.barbarians=[]
         self.n=n
         self.m=m    
         
@@ -23,6 +24,9 @@ class Game():
     def addHut(self, hut):
         self.huts.append(hut)
         # self.cboard[hut.y][hut.x] = hut.char
+
+    def addBarbarain(self, hut):
+        self.barbarians.append(hut)
 
     def display(self):
         for i in range(self.m):
