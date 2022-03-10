@@ -49,7 +49,7 @@ class King():
                 self.game.townHall.health -= 1
                 self.game.townHall.color = brickCOLOR[self.game.townHall.health]
             elif(self.x > 0 and self.game.cboard[self.x - 1][self.y] == 'H'):
-                print("hit")
+               
                 for hut in self.game.huts:
                     if(hut.x == self.x - 1 and hut.y == self.y):
                         hut.health -= self.damage

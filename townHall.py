@@ -6,7 +6,7 @@ from building import Building
 
 class TownHall(Building):
     def __init__(self,game,y,x):
-        super().__init__(game,y,x,5,5,'T')
+        super().__init__(game,y,x,4,3,'T')
 
     def display(self):
         if(self.health>0):

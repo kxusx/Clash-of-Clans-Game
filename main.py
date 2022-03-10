@@ -71,12 +71,11 @@ while game.status=='playing':
     elif(key == ' '):
         king.attack()
     elif(key == '1'):
-        barbarain = Barbarian(game,5,25)
+        barbarain = Barbarian(game,15,2)
         # barbarain.display()
         barbarians.append(barbarain)
         game.addBarbarain(barbarain)
     
-    print(len(barbarians))
     king.display()
     king.move(key)
     game.display()

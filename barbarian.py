@@ -18,8 +18,33 @@ class Barbarian():
         self.status = 'alive'
 
     def move(self):
-        if(self.x > 0 and self.game.cboard[self.x-1][self.y] == 'X'):
-            self.x = self.x-1
+        minDist = 10000
+        for hut in self.game.huts:
+            dist = abs(hut.x - self.x) + abs(hut.y - self.y)
+            if(dist < minDist):
+                minDist = dist
+                minHut = hut
+        
+        if(minHut.x > self.x):
+            if(self.x < self.game.m-1 and self.game.cboard[self.x + 1][self.y] == 'X'):
+                self.x += 1
+                self.direction = 's'
+        elif(minHut.x < self.x):
+            if(self.x > 0 and self.game.cboard[self.x - 1][self.y] == 'X'):
+                self.x -= 1
+                self.direction = 'w'
+      
+        if(minHut.y > self.y):
+            if(self.y < self.game.n-1 and self.game.cboard[self.x][self.y + 1] == 'X'):
+                self.y += 1
+                self.direction = 'd'
+        elif(minHut.y < self.y):
+            if(self.y > 0 and self.game.cboard[self.x][self.y - 1] == 'X'):
+                self.y -= 1
+                self.direction = 'a'
+        
+        
+
 
 
     def display(self):
