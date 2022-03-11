@@ -1,20 +1,17 @@
 from utils import brickCOLOR
 import colorama
 from colorama import Fore, Back, Style
+from building import Building
 
 
 
 
-class Cannon():
-    def __init__(self,game, x, y,damage,range, char):
-        self.x = x
-        self.y = y
-        self.game = game
+class Cannon(Building):
+
+    def __init__(self,game,x,y,damage,range):
+        super().__init__(game,x,y,1,1,'C')
         self.range= range
         self.damage = damage
-        self.health = 10
-        self.char = char
-        self.color = brickCOLOR[self.health]
     
     def display(self):
         cArr = self.game.cboard
@@ -34,4 +31,12 @@ class Cannon():
                     barbarian.status='dead'
                     self.game.barbarians.remove(barbarian)
                 return
+        
+        distToKing = (self.game.king.x-self.x)**2+(self.game.king.y-self.y)**2
+        if(distToKing<=(self.range)**2):
+            self.game.king.health-=self.damage
+            if(self.game.king.health<=0):
+                self.game.king.status='dead'    
+                return
+
 

@@ -6,7 +6,7 @@ from townHall import TownHall
 from huts import Hut
 from barbarian import Barbarian
 from cannon import Cannon
-
+from spells import Spells
 from king import King
 colorama.init()
 
@@ -25,13 +25,21 @@ townHall=TownHall(game,15,15)
 game.addTownHall(townHall)
 game.addBuilding(townHall)
 
-king = King(game,10,12,1)
+king = King(game,5,20,1)
 game.addKing(king)
 
 
-cannon = Cannon(game,10,10,4,3,'C')
+cannon = Cannon(game,10,10,2,6)
 game.addCannon(cannon)
+game.addBuilding(cannon)
 
+cannon = Cannon(game,15,20,2,6)
+game.addCannon(cannon)
+game.addBuilding(cannon)
+
+cannon = Cannon(game,25,28,2,6)
+game.addCannon(cannon)
+game.addBuilding(cannon)
 
 hut = Hut(game,2,4)
 game.addHut(hut)
@@ -53,14 +61,13 @@ hut = Hut(game,26,29)
 game.addHut(hut)
 game.addBuilding(hut)
 
+spell=Spells(game)
+
 while game.status=='playing':
     key = get_input()
     game.board = copy.deepcopy(emptyBoard)
     game.cboard = copy.deepcopy(emptyBoard)
     print("\033[H\033[J", end="")
-
-    cannon.display()
-    cannon.attack()
 
     townHall.display()
 
@@ -69,8 +76,13 @@ while game.status=='playing':
             game.buildings.remove(building)
             if(building.char=='H'):
                 game.huts.remove(building)
+            elif(building.char=='C'):
+                game.cannons.remove(building)
         else:
             building.display()
+
+    for cannon in game.cannons:
+        cannon.attack()
 
     for barbarian in game.barbarians:
         if(barbarian.health<=0):
@@ -94,6 +106,10 @@ while game.status=='playing':
     elif(key=='3'):
         barbarain = Barbarian(game,7,25)
         game.addBarbarain(barbarain)
+    elif(key=='i'):
+        spell.rage()
+    elif(key=='o'):
+        spell.heal()
     
     
     king.display()

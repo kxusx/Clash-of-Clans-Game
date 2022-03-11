@@ -30,7 +30,7 @@ def alarmHandler(signum, frame):
     raise AlarmException
 
 
-def get_input(timeout=0.1):
+def get_input(timeout=0.3):
     """Taking input from user."""
     signal.signal(signal.SIGALRM, alarmHandler)
     signal.setitimer(signal.ITIMER_REAL, timeout)
