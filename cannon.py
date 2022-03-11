@@ -4,6 +4,7 @@ from colorama import Fore, Back, Style
 
 
 
+
 class Cannon():
     def __init__(self,game, x, y,damage,range, char):
         self.x = x
@@ -27,9 +28,10 @@ class Cannon():
     def attack(self):
         for barbarian in self.game.barbarians:
             dist=(barbarian.x-self.x)**2+(barbarian.y-self.y)**2
-            if(dist<=self.range):
+            if(dist<=(self.range)**2):
                 barbarian.health-=self.damage
                 if(barbarian.health<=0):
                     barbarian.status='dead'
-                    return
+                    self.game.barbarians.remove(barbarian)
+                return
 

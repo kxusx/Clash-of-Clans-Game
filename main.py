@@ -20,52 +20,38 @@ for i in range(m):
     emptyBoard .append(row)
 
 game=Game(emptyBoard ,m,n)
+
 townHall=TownHall(game,15,15)
+game.addTownHall(townHall)
+game.addBuilding(townHall)
+
 king = King(game,10,12,1)
+game.addKing(king)
 
-huts = []
-barbarians = []
-buildings = []
-cannons = []
 
-cannon = Cannon(game,10,10,4,5,'C')
-cannons.append(cannon)
+cannon = Cannon(game,10,10,4,3,'C')
 game.addCannon(cannon)
 
 
 hut = Hut(game,2,4)
-huts.append(hut)
-buildings.append(hut)
 game.addHut(hut)
 game.addBuilding(hut)
 
 hut = Hut(game,5,6)
-huts.append(hut)
-buildings.append(hut)
 game.addHut(hut)
 game.addBuilding(hut)
 
 hut = Hut(game,17,20)
-huts.append(hut)
-buildings.append(hut)
 game.addHut(hut)
 game.addBuilding(hut)
 
 hut = Hut(game,20,25)
-huts.append(hut)
-buildings.append(hut)
 game.addHut(hut)
 game.addBuilding(hut)
 
 hut = Hut(game,26,29)
-huts.append(hut)
-buildings.append(hut)
 game.addHut(hut)
 game.addBuilding(hut)
-
-game.addKing(king)
-game.addTownHall(townHall)
-
 
 while game.status=='playing':
     key = get_input()
@@ -77,17 +63,22 @@ while game.status=='playing':
     cannon.attack()
 
     townHall.display()
-    for i in range(len(huts)):
-        huts[i].display()
-    for i in range(len(barbarians)):
-        barbarians[i].display()
-        barbarians[i].move()
-        # barbarians[i].attack()
 
-        if(barbarians[i].status == 'dead'):
-            barbarians.pop(i)
-            game.deleteBarbarian(i)
+    for building in game.buildings:
+        if(building.health<=0):
+            game.buildings.remove(building)
+            if(building.char=='H'):
+                game.huts.remove(building)
+        else:
+            building.display()
 
+    for barbarian in game.barbarians:
+        if(barbarian.health<=0):
+            game.barbarians.remove(barbarian)
+        else:
+            barbarian.display()
+            barbarian.move()
+            barbarian.attack()
 
 
     if(key =='q'):
@@ -95,23 +86,16 @@ while game.status=='playing':
     elif(key == ' '):
         king.attack()
     elif(key == '1'):
-        barbarain = Barbarian(game,10,13)
-        barbarians.append(barbarain)
+        barbarain = Barbarian(game,0,17)
         game.addBarbarain(barbarain)
     elif(key=='2'):
         barbarain = Barbarian(game,20,10)
-        barbarians.append(barbarain)
         game.addBarbarain(barbarain)    
     elif(key=='3'):
         barbarain = Barbarian(game,7,25)
-        barbarians.append(barbarain)
         game.addBarbarain(barbarain)
     
     
     king.display()
     king.move(key)
     game.display()
-    
-    
-
-

@@ -42,54 +42,44 @@ class King():
                 self.direction = 'd'
 
     def attack(self):
-
         if(self.direction == 'w'):
-            # print( self.game.cboard[self.x - 1][self.y])
-            if(self.x > 0 and self.game.cboard[self.x - 1][self.y] == 'T'):
-                self.game.townHall.health -= 1
-                self.game.townHall.color = brickCOLOR[self.game.townHall.health]
-            elif(self.x > 0 and self.game.cboard[self.x - 1][self.y] == 'H'):
-               
-                for hut in self.game.huts:
-                    if(hut.x == self.x - 1 and hut.y == self.y):
-                        hut.health -= self.damage
-                        hut.color = brickCOLOR[hut.health]
-                        hut.display()
+            if(self.x > 0 and (self.game.cboard[self.x - 1][self.y] == 'T' or self.game.cboard[self.x - 1][self.y] == 'H')):
+                for building in self.game.buildings:
+                    if(self.game.cboard[self.x - 1][self.y] == 'T' and building.char == 'T'):
+                        building.health -= self.damage
+                        building.color = brickCOLOR[building.health]    
+                    elif(building.x == self.x - 1 and building.y == self.y):
+                        building.health -= self.damage
+                        building.color = brickCOLOR[building.health]    
+                        
 
         if(self.direction == 'a'):
-            # print(self.game.cboard[self.x][self.y - 1])
-            if(self.y > 0 and self.game.cboard[self.x][self.y - 1] == 'T'):
-                self.game.townHall.health -= 1
-                self.game.townHall.color = brickCOLOR[self.game.townHall.health] 
-            elif(self.y > 0 and self.game.cboard[self.x][self.y - 1] == 'H'):
-                for hut in self.game.huts:
-                    if(hut.x == self.x and hut.y == self.y - 1):
-                        hut.health -= self.damage
-                        hut.color = brickCOLOR[hut.health]
-                        hut.display()
+            if(self.y > 0 and (self.game.cboard[self.x][self.y - 1] == 'T' or self.game.cboard[self.x][self.y - 1] == 'H')):
+                for building in self.game.buildings:
+                    if(self.game.cboard[self.x][self.y - 1] == 'T' and building.char == 'T'):
+                        building.health -= self.damage
+                        building.color = brickCOLOR[building.health]
+                    elif(building.x == self.x and building.y == self.y - 1):
+                        building.health -= self.damage
+                        building.color = brickCOLOR[building.health]
 
         if(self.direction == 's'):
-            # print(self.game.cboard[self.x + 1][self.y])
-            if(self.x < self.game.m-1 and self.game.cboard[self.x + 1][self.y] == 'T'):
-                self.game.townHall.health -= 1
-                self.game.townHall.color = brickCOLOR[self.game.townHall.health]
-            elif(self.x < self.game.m-1 and self.game.cboard[self.x + 1][self.y] == 'H'):
-                for hut in self.game.huts:
-                    if(hut.x == self.x + 1 and hut.y == self.y):
-                        hut.health -= self.damage
-                        hut.color = brickCOLOR[hut.health]
-                        hut.display()
+            if(self.x < self.game.m-1 and (self.game.cboard[self.x + 1][self.y] == 'T' or self.game.cboard[self.x + 1][self.y] == 'H')):
+                for building in self.game.buildings:
+                    if(self.game.cboard[self.x + 1][self.y] == 'T' and building.char == 'T'):
+                        building.health -= self.damage
+                        building.color = brickCOLOR[building.health]
+                    elif(building.x == self.x + 1 and building.y == self.y):
+                        building.health -= self.damage
+                        building.color = brickCOLOR[building.health]
                
         if(self.direction == 'd'):
-            # print(self.game.cboard[self.x][self.y + 1])
-            if(self.y < self.game.n-1 and self.game.cboard[self.x][self.y + 1] == 'T'):
-                self.game.townHall.health -= 1
-                self.game.townHall.color = brickCOLOR[self.game.townHall.health]
-            elif(self.y < self.game.n-1 and self.game.cboard[self.x][self.y + 1] == 'H'):
-                for hut in self.game.huts:
-                    if(hut.x == self.x and hut.y == self.y + 1):
-                        hut.health -= self.damage
-                        hut.color = brickCOLOR[hut.health]
-                        hut.display()
-                
+            if(self.y < self.game.n-1 and (self.game.cboard[self.x][self.y + 1] == 'T' or self.game.cboard[self.x][self.y + 1] == 'H')):
+                for building in self.game.buildings:
+                    if(self.game.cboard[self.x][self.y + 1] == 'T' and building.char == 'T'):
+                        building.health -= self.damage
+                        building.color = brickCOLOR[building.health]
+                    elif(building.x == self.x and building.y == self.y + 1):
+                        building.health -= self.damage
+                        building.color = brickCOLOR[building.health]
         
