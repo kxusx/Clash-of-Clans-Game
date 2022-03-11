@@ -8,6 +8,7 @@ from barbarian import Barbarian
 from cannon import Cannon
 from spells import Spells
 from king import King
+from wall import Wall
 colorama.init()
 
 emptyBoard = []
@@ -61,6 +62,19 @@ hut = Hut(game,26,29)
 game.addHut(hut)
 game.addBuilding(hut)
 
+for i in range(12,17):
+    wall = Wall(game,12,i)
+    game.addBuilding(wall)
+    wall2 = Wall(game,16,i)
+    game.addBuilding(wall2)
+
+for i in range(12,17):
+    wall = Wall(game,i,11)
+    game.addBuilding(wall)
+    wall2 = Wall(game,i,17)
+    game.addBuilding(wall2)
+
+
 spell=Spells(game)
 
 while game.status=='playing':
@@ -70,6 +84,7 @@ while game.status=='playing':
     print("\033[H\033[J", end="")
 
     townHall.display()
+
 
     for building in game.buildings:
         if(building.health<=0):

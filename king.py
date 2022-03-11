@@ -45,7 +45,10 @@ class King():
 
     def attack(self):
         if(self.direction == 'w'):
-            if(self.x > 0 and (self.game.cboard[self.x - 1][self.y] == 'T' or self.game.cboard[self.x - 1][self.y] == 'H' or self.game.cboard[self.x - 1][self.y] == 'C')):
+            if(self.x > 0 and (self.game.cboard[self.x - 1][self.y] == 'T' 
+            or self.game.cboard[self.x - 1][self.y] == 'H' 
+            or self.game.cboard[self.x - 1][self.y] == 'C' 
+            or self.game.cboard[self.x - 1][self.y] == '#')):
                 for building in self.game.buildings:
                     if(self.game.cboard[self.x - 1][self.y] == 'T' and building.char == 'T'):
                         building.health -= self.damage
@@ -58,7 +61,8 @@ class King():
         if(self.direction == 'a'):
             if(self.y > 0 and (self.game.cboard[self.x][self.y - 1] == 'T' 
                or self.game.cboard[self.x][self.y - 1] == 'H' 
-               or self.game.cboard[self.x][self.y - 1] == 'C')):
+               or self.game.cboard[self.x][self.y - 1] == 'C'
+               or self.game.cboard[self.x][self.y - 1] == '#')):
                 for building in self.game.buildings:
                     if(self.game.cboard[self.x][self.y - 1] == 'T' and building.char == 'T'):
                         building.health -= self.damage
@@ -70,7 +74,8 @@ class King():
         if(self.direction == 's'):
             if(self.x < self.game.m-1 and (self.game.cboard[self.x + 1][self.y] == 'T' 
                or self.game.cboard[self.x + 1][self.y] == 'H' 
-               or self.game.cboard[self.x + 1][self.y] == 'C')):
+               or self.game.cboard[self.x + 1][self.y] == 'C'
+               or self.game.cboard[self.x + 1][self.y] == '#')):
                 for building in self.game.buildings:
                     if(self.game.cboard[self.x + 1][self.y] == 'T' and building.char == 'T'):
                         building.health -= self.damage
@@ -82,7 +87,8 @@ class King():
         if(self.direction == 'd'):
             if(self.y < self.game.n-1 and (self.game.cboard[self.x][self.y + 1] == 'T' 
                or self.game.cboard[self.x][self.y + 1] == 'H' 
-               or self.game.cboard[self.x][self.y + 1] == 'C')):
+               or self.game.cboard[self.x][self.y + 1] == 'C'
+               or self.game.cboard[self.x][self.y + 1] == '#')):
                 for building in self.game.buildings:
                     if(self.game.cboard[self.x][self.y + 1] == 'T' and building.char == 'T'):
                         building.health -= self.damage
