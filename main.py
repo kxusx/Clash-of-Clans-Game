@@ -7,7 +7,10 @@ from huts import Hut
 from barbarian import Barbarian
 from cannon import Cannon
 from spells import Spells
+import time
 from king import King
+from colorama import Back
+from colorama import Fore, Back, Style
 from wall import Wall
 colorama.init()
 
@@ -30,15 +33,15 @@ king = King(game,5,20,1)
 game.addKing(king)
 
 
-cannon = Cannon(game,10,10,2,6)
+cannon = Cannon(game,10,10,1,6)
 game.addCannon(cannon)
 game.addBuilding(cannon)
 
-cannon = Cannon(game,15,20,2,6)
+cannon = Cannon(game,15,20,1,6)
 game.addCannon(cannon)
 game.addBuilding(cannon)
 
-cannon = Cannon(game,25,28,2,6)
+cannon = Cannon(game,25,28,1,6)
 game.addCannon(cannon)
 game.addBuilding(cannon)
 
@@ -77,7 +80,11 @@ for i in range(12,17):
 
 spell=Spells(game)
 
+initTime = time.time()
+
 while game.status=='playing':
+    timenow = int(time.time()-initTime)
+    lifecard = "Health: " + ' | '*king.health + ' - '*(10-king.health) + "\t\t\t\t\t"
     key = get_input()
     game.board = copy.deepcopy(emptyBoard)
     game.cboard = copy.deepcopy(emptyBoard)
@@ -125,8 +132,12 @@ while game.status=='playing':
         spell.rage()
     elif(key=='o'):
         spell.heal()
+    elif(key=='l'):
+        king.leviathonAttack(5)
     
     
     king.display()
     king.move(key)
     game.display()
+    print(lifecard)
+    print("Time : "+str(timenow))

@@ -97,3 +97,9 @@ class King():
                         building.health -= self.damage
                         building.color = brickCOLOR[building.health]
         
+    def leviathonAttack(self,range):
+        for building in self.game.buildings:
+            dist = (self.x - building.x)**2 + (self.y - building.y)**2
+            if(dist <= range**2):
+                building.health -= self.damage
+                building.color = brickCOLOR[building.health]
