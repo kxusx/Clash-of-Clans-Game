@@ -1,6 +1,5 @@
 from re import L, M
 import time
-from tkinter import N
  
 class Game():
     def __init__(self,board,m,n):

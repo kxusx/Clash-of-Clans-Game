@@ -149,10 +149,11 @@ while game.status=='playing':
         spell.heal()
     elif(key=='l'):
         king.leviathonAttack(5)
+
     
     replaySteps[counter] = key
 
-    if(king.health>0):
+    if(king.health>=0):
         king.display()
         king.move(key)
     else:
@@ -167,7 +168,7 @@ while game.status=='playing':
         print("\033[H\033[J", end="")
         print("Game Over")
         print("You Lose")
-        # playsound("lose.mov")
+        playsound("lose1.mov")
     if(game.noOfBuildings==0):
         game.status="over"
         print("\033[H\033[J", end="")
