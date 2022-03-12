@@ -12,6 +12,7 @@ from king import King
 from colorama import Back
 from colorama import Fore, Back, Style
 from wall import Wall
+from playsound import playsound
 colorama.init()
 
 emptyBoard = []
@@ -21,7 +22,7 @@ n=30 # columns
 for i in range(m):
     row = ['X']*n
     row.append('\n')
-    emptyBoard .append(row)
+    emptyBoard.append(row)
 
 game=Game(emptyBoard ,m,n)
 
@@ -125,7 +126,7 @@ while game.status=='playing':
             barbarian.move()
             barbarian.attack()
 
-
+    
     if(key =='q'):
         game.status="over"
     elif(key == ' '):
@@ -160,17 +161,19 @@ while game.status=='playing':
     game.display()
     print(lifecard)
     print("Time : "+str(timenow))
-
+    
     if(noOfPersons==0):
         game.status="over"
         print("\033[H\033[J", end="")
         print("Game Over")
-        print(" You Lose")
+        print("You Lose")
+        # playsound("lose.mov")
     if(game.noOfBuildings==0):
         game.status="over"
         print("\033[H\033[J", end="")
         print("Game Over")
-        print(" You Win")
+        print("You Win!")
+        playsound("victory1.mov")
         game.status="over"
     counter+=1
     

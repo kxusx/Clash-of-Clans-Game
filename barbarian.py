@@ -30,32 +30,20 @@ class Barbarian():
         if(minDist<1000):
             if(minBuilding.x > self.x):
                 if(self.x < self.game.m-1 and (self.game.cboard[self.x + 1][self.y] == 'X' or self.game.cboard[self.x + 1][self.y] == 'B')):
-                    if(minBuilding.x-self.x==2):
-                        self.x+=1
-                    else:
-                        self.x += self.speed
-                    self.direction = 's'
+                    self.x += self.speed
+                    self.direction = 's'            
             elif(minBuilding.x < self.x):
                 if(self.x > 0 and (self.game.cboard[self.x - 1][self.y] == 'X' or self.game.cboard[self.x - 1][self.y] == 'B')):
-                    if(self.x-minBuilding.x==2):
-                        self.x-=1
-                    else:
-                        self.x -= self.speed
+                    self.x -= self.speed
                     self.direction = 'w'
 
             if(minBuilding.y > self.y):
                 if(self.y < self.game.n-1 and (self.game.cboard[self.x][self.y + 1] == 'X' or self.game.cboard[self.x][self.y + 1] == 'B')):
-                    if(minBuilding.y-self.y==2):
-                        self.y+=1
-                    else:
-                        self.y += self.speed
+                    self.y += self.speed
                     self.direction = 'd'
             elif(minBuilding.y < self.y):
                 if(self.y > 0 and (self.game.cboard[self.x][self.y - 1] == 'X' or self.game.cboard[self.x][self.y - 1] == 'B')):
-                    if(self.y-minBuilding.y==2):
-                        self.y-=1
-                    else:
-                        self.y -= self.speed
+                    self.y -= self.speed
                     self.direction = 'a'
 
     def display(self):

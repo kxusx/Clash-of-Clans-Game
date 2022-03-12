@@ -3,9 +3,6 @@ import colorama
 from colorama import Fore, Back, Style
 from building import Building
 
-
-
-
 class Cannon(Building):
 
     def __init__(self,game,x,y,damage,range):
@@ -16,8 +13,10 @@ class Cannon(Building):
     def display(self):
         cArr = self.game.cboard
         arr = self.game.board
+        
         arr[self.x][self.y] = self.color + 'C' + Style.RESET_ALL
         cArr[self.x][self.y] = 'C'
+        self.color=brickCOLOR[self.health]    
         self.game.board = arr
         self.game.cboard = cArr
     
@@ -32,7 +31,7 @@ class Cannon(Building):
                 if(barbarian.health<=0):
                     barbarian.status='dead'
                     self.game.barbarians.remove(barbarian)
-                self.color=brickCOLOR[self.health]
+                
                 return
         
         distToKing = (self.game.king.x-self.x)**2+(self.game.king.y-self.y)**2
@@ -43,7 +42,7 @@ class Cannon(Building):
                 self.game.king.color = brickCOLOR[self.game.king.health]
             if(self.game.king.health<=0):
                 self.game.king.status='dead'
-            self.color=brickCOLOR[self.health]    
+            
             return
             
 

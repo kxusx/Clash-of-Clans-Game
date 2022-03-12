@@ -1,19 +1,12 @@
 from utils import brickCOLOR
 import colorama
 from colorama import Fore, Back, Style
+from building import Building
 
-class Wall():
+class Wall(Building):
     def __init__(self, game, x, y):
-        self.game = game
-        self.health = 10
-        self.x=x 
-        self.y=y
-        self.status = 'alive'
-        self.color = brickCOLOR[self.health]
-        self.char = '#'
-        self.width=1
-        self.height=1
-
+        super().__init__(game, x, y, 1, 1, '#')
+        
     def display(self):
         if(self.health>0):
             cArr = self.game.cboard
