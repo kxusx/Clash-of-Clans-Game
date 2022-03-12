@@ -1,18 +1,18 @@
 import colorama
 import copy
 import ast
-from game import Game
-from input import get_input 
-from townHall import TownHall
-from huts import Hut
-from barbarian import Barbarian
-from cannon import Cannon
-from spells import Spells
+from src.gameClass import Game
+from src.input import get_input 
+from src.townHall import TownHall
+from src.huts import Hut
+from src.barbarian import Barbarian
+from src.cannon import Cannon
+from src.spells import Spells
 import time
-from king import King
+from src.king import King
 from colorama import Back
 from colorama import Fore, Back, Style
-from wall import Wall
+from src.wall import Wall
 colorama.init()
 
 emptyBoard = []

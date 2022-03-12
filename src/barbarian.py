@@ -1,4 +1,4 @@
-from utils import brickCOLOR
+from src.utils import brickCOLOR
 import colorama
 from colorama import Fore, Back, Style
 

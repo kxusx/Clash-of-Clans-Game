@@ -1,9 +1,9 @@
-from utils import brickCOLOR
+from src.utils import brickCOLOR
 import colorama
 from colorama import Fore, Back, Style
-from building import Building
+from src.building import Building
 
-
+ 
 class TownHall(Building):
     def __init__(self,game,x,y):
         super().__init__(game,x,y,4,3,'T')

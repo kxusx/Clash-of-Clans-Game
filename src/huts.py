@@ -1,7 +1,7 @@
-from utils import brickCOLOR
+from src.utils import brickCOLOR
 import colorama
 from colorama import Fore, Back, Style
-from building import Building
+from src.building import Building
 
 
 class Hut(Building):

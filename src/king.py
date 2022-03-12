@@ -1,4 +1,4 @@
-from utils import brickCOLOR
+from src.utils import brickCOLOR
 import colorama
 from colorama import Fore, Back, Style
 from playsound import playsound
@@ -52,10 +52,10 @@ class King():
                 for building in self.game.buildings:
                     if(self.game.cboard[self.x - 1][self.y] == 'T' and building.char == 'T'):
                         building.health -= self.damage
-                        playsound("bullet1.mov")
+                        playsound("src/bullet1.mov")
                         building.color = brickCOLOR[building.health]    
                     elif(building.x == self.x - 1 and building.y == self.y):
-                        playsound("bullet1.mov")
+                        playsound("src/bullet1.mov")
                         building.health -= self.damage
                         building.color = brickCOLOR[building.health]    
                         
@@ -68,11 +68,11 @@ class King():
                 for building in self.game.buildings:
                     if(self.game.cboard[self.x][self.y - 1] == 'T' and building.char == 'T'):
                         building.health -= self.damage
-                        playsound("bullet1.mov")
+                        playsound("src/bullet1.mov")
                         building.color = brickCOLOR[building.health]
                     elif(building.x == self.x and building.y == self.y - 1):
                         building.health -= self.damage
-                        playsound("bullet1.mov")
+                        playsound("src/bullet1.mov")
                         building.color = brickCOLOR[building.health]
 
         if(self.direction == 's'):
@@ -83,11 +83,11 @@ class King():
                 for building in self.game.buildings:
                     if(self.game.cboard[self.x + 1][self.y] == 'T' and building.char == 'T'):
                         building.health -= self.damage
-                        playsound("bullet1.mov")
+                        playsound("src/bullet1.mov")
                         building.color = brickCOLOR[building.health]
                     elif(building.x == self.x + 1 and building.y == self.y):
                         building.health -= self.damage
-                        playsound("bullet1.mov")
+                        playsound("src/bullet1.mov")
                         building.color = brickCOLOR[building.health]
                
         if(self.direction == 'd'):
@@ -98,11 +98,11 @@ class King():
                 for building in self.game.buildings:
                     if(self.game.cboard[self.x][self.y + 1] == 'T' and building.char == 'T'):
                         building.health -= self.damage
-                        playsound("bullet1.mov")
+                        playsound("src/bullet1.mov")
                         building.color = brickCOLOR[building.health]
                     elif(building.x == self.x and building.y == self.y + 1):
                         building.health -= self.damage
-                        playsound("bullet1.mov")
+                        playsound("src/bullet1.mov")
                         building.color = brickCOLOR[building.health]
         
     def leviathonAttack(self,range):
