@@ -27,6 +27,7 @@ class Cannon(Building):
             dist=(barbarian.x-self.x)**2+(barbarian.y-self.y)**2
             if(dist<=(self.range)**2):
                 barbarian.health-=self.damage
+                barbarian.color = brickCOLOR[barbarian.health]
                 if(barbarian.health<=0):
                     barbarian.status='dead'
                     self.game.barbarians.remove(barbarian)
@@ -34,7 +35,9 @@ class Cannon(Building):
         
         distToKing = (self.game.king.x-self.x)**2+(self.game.king.y-self.y)**2
         if(distToKing<=(self.range)**2):
-            self.game.king.health-=self.damage
+            if(self.game.king.health>0):
+                self.game.king.health-=self.damage
+                self.game.king.color = brickCOLOR[self.game.king.health]
             if(self.game.king.health<=0):
                 self.game.king.status='dead'    
                 return

@@ -1,5 +1,6 @@
 import colorama
 import copy
+import ast
 from game import Game
 from input import get_input 
 from townHall import TownHall
@@ -82,16 +83,21 @@ spell=Spells(game)
 
 initTime = time.time()
 
-file = open("replay.txt","a")
-replaySteps = {}
-noOfPersons = 1
-counter=0
+gameNo = input("Enter which Game you want to replay : ")
+file = open("replay.txt","r")
+lines = file.readlines()
+print(lines)
+dict = ast.literal_eval(lines[int(gameNo) - 1])
 
+
+noOfPersons = 1
+
+counter=0
 while game.status=='playing':
     timenow = int(time.time()-initTime)
-    
     lifecard = "Health: " + ' | '*king.health + ' - '*(10-king.health) + "\t\t\t\t\t"
-    key = get_input()
+
+    key = dict[counter]
     game.board = copy.deepcopy(emptyBoard)
     game.cboard = copy.deepcopy(emptyBoard)
     print("\033[H\033[J", end="")
@@ -148,8 +154,6 @@ while game.status=='playing':
         spell.heal()
     elif(key=='l'):
         king.leviathonAttack(5)
-    
-    replaySteps[counter] = key
 
     if(king.health>0):
         king.display()
@@ -172,10 +176,6 @@ while game.status=='playing':
         print("Game Over")
         print(" You Win")
         game.status="over"
+    
     counter+=1
-    
-    
-
-    
-file.write(str(replaySteps))
-file.write("\n")
+    time.sleep(0.1)

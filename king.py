@@ -27,19 +27,19 @@ class King():
 
     def move(self, dir):
         if(dir == 'w'):  # w
-            if(self.x > 0 and self.game.cboard[self.x - 1][self.y] == 'X'):
+            if(self.x >= self.speed and self.game.cboard[self.x - self.speed][self.y] == 'X'):
                 self.x -= self.speed
                 self.direction = 'w'
         if(dir == 'a'):  # a
-            if(self.y > 0 and self.game.cboard[self.x][self.y - 1] == 'X'):
+            if(self.y >= self.speed and self.game.cboard[self.x][self.y - self.speed] == 'X'):
                 self.y -= self.speed
                 self.direction = 'a'
         if(dir == 's'):  # s
-            if(self.x < self.game.m-1 and self.game.cboard[self.x + 1][self.y] == 'X'):
+            if(self.x < self.game.m-self.speed and self.game.cboard[self.x + self.speed][self.y] == 'X'):
                 self.x += self.speed
                 self.direction = 's'
         if(dir == 'd'):  # d
-            if(self.y < self.game.n-1 and self.game.cboard[self.x][self.y + 1] == 'X'):
+            if(self.y < self.game.n-self.speed and self.game.cboard[self.x][self.y + self.speed] == 'X'):
                 self.y += self.speed
                 self.direction = 'd'
 
@@ -103,3 +103,5 @@ class King():
             if(dist <= range**2):
                 building.health -= self.damage
                 building.color = brickCOLOR[building.health]
+
+    

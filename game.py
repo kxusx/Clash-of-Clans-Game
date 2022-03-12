@@ -12,6 +12,7 @@ class Game():
         self.buildings= []
         self.barbarians=[]
         self.cannons=[]
+        self.noOfBuildings = 0
         self.n=n
         self.m=m    
         
@@ -29,6 +30,8 @@ class Game():
     
     def addBuilding(self, building):
         self.buildings.append(building)
+        if(building.char=='H' or building.char=='T' or building.char=='C'):
+            self.noOfBuildings += 1
         # self.cboard[building.y][building.x] = building.char
 
     def addBarbarain(self, hut):
