@@ -84,7 +84,7 @@ spell=Spells(game)
 initTime = time.time()
 
 gameNo = input("Enter which Game you want to replay : ")
-file = open("replay.txt","r")
+file = open("replays/replay.txt","r")
 lines = file.readlines()
 print(lines)
 dict = ast.literal_eval(lines[int(gameNo) - 1])

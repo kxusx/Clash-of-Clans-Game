@@ -42,6 +42,8 @@ class King():
             if(self.y < self.game.n-self.speed and self.game.cboard[self.x][self.y + self.speed] == 'X'):
                 self.y += self.speed
                 self.direction = 'd'
+        if(self.x==2 and self.y==12):
+            self.health-=4
 
     def attack(self):
         if(self.direction == 'w'):

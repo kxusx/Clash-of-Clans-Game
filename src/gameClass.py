@@ -40,6 +40,7 @@ class Game():
         self.cannons.append(cannon)
 
     def display(self):
+        self.board[2][12]='U'
         for i in range(self.m):
             for j in range(self.n):
                 print(self.board[i][j], end=" ")

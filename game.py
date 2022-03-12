@@ -83,7 +83,7 @@ spell=Spells(game)
 
 initTime = time.time()
 
-file = open("replay.txt","a")
+file = open("replays/replay.txt","a")
 replaySteps = {}
 noOfPersons = 1
 counter=0
