@@ -12,6 +12,7 @@ class Game():
         self.barbarians=[]
         self.archers=[]
         self.cannons=[]
+        self.ballons=[]
         self.noOfBuildings = 0
         self.n=n
         self.m=m    
@@ -42,6 +43,10 @@ class Game():
     
     def addCannon(self, cannon):
         self.cannons.append(cannon)
+    
+    def addBallon(self, ballon):
+        self.ballons.append(ballon)
+        # self.cboard[self.ballon.y][self.ballon.x] = self.ballon.char
 
     def display(self):
         self.board[2][12]='U'

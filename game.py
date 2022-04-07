@@ -8,6 +8,7 @@ from src.barbarian import Barbarian
 from src.cannon import Cannon
 from src.spells import Spells
 from src.archer import Archer
+from src.ballon import Ballon
 import time
 from src.king import King
 from colorama import Back
@@ -138,7 +139,15 @@ while game.status=='playing':
             archer.move()
             archer.attack()
 
-    
+    for ballon in game.ballons:
+        if(ballon.health<=0):
+            game.ballons.remove(ballon)
+            noOfPersons -= 1
+        else:
+            ballon.display()
+            ballon.move()
+            ballon.attack()
+
     if(key =='q'):
         game.status="over"
     elif(key == ' '):
@@ -159,6 +168,10 @@ while game.status=='playing':
         archer = Archer(game,1,1)
         game.addArcher(archer)
         noOfPersons += 1
+    elif(key=='7'):
+        ballon = Ballon(game,1,10)
+        game.addBallon(ballon)
+        noOfPersons += 1
     elif(key=='r'):
         spell.rage()
     elif(key=='h'):
@@ -166,7 +179,6 @@ while game.status=='playing':
     elif(key=='l'):
         king.leviathonAttack(5)
 
-    
     replaySteps[counter] = key
 
     if(king.health>=0):
@@ -193,9 +205,6 @@ while game.status=='playing':
         playsound("src/victory1.mov")
         game.status="over"
     counter+=1
-    
-    
-
     
 file.write(str(replaySteps))
 file.write("\n")
