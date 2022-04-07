@@ -10,6 +10,7 @@ class Game():
         self.huts=[]
         self.buildings= []
         self.barbarians=[]
+        self.archers=[]
         self.cannons=[]
         self.noOfBuildings = 0
         self.n=n
@@ -35,6 +36,9 @@ class Game():
 
     def addBarbarain(self, hut):
         self.barbarians.append(hut)
+
+    def addArcher(self, archer):
+        self.archers.append(archer)
     
     def addCannon(self, cannon):
         self.cannons.append(cannon)

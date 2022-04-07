@@ -1,3 +1,4 @@
+import math
 from src.utils import brickCOLOR
 import colorama
 from colorama import Fore, Back, Style
@@ -68,13 +69,13 @@ class Barbarian():
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
                     else:
-                        building.color = brickCOLOR[building.health]
+                        building.color = brickCOLOR[math.floor(building.health)]
                 elif(building.x == self.x - 1 and building.y == self.y):
                     building.health -= self.damage
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
                     else:
-                        building.color = brickCOLOR[building.health]
+                        building.color = brickCOLOR[math.floor(building.health)]
             return
 
         if(self.y > 0 and (self.game.cboard[self.x][self.y - 1] == 'T' 
@@ -87,13 +88,13 @@ class Barbarian():
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
                     else:
-                        building.color = brickCOLOR[building.health]
+                        building.color = brickCOLOR[math.floor(building.health)]
                 elif(building.x == self.x and building.y == self.y - 1):
                     building.health -= self.damage
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
                     else:
-                        building.color = brickCOLOR[building.health]
+                        building.color = brickCOLOR[math.floor(building.health)]
             return
 
         if(self.x < self.game.m-1 and (self.game.cboard[self.x + 1][self.y] == 'T' 
@@ -106,13 +107,13 @@ class Barbarian():
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
                     else:
-                        building.color = brickCOLOR[building.health]
+                        building.color = brickCOLOR[math.floor(building.health)]
                 elif(building.x == self.x + 1 and building.y == self.y):
                     building.health -= self.damage
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
                     else:
-                        building.color = brickCOLOR[building.health]
+                        building.color = brickCOLOR[math.floor(building.health)]
             return
 
         if(self.y < self.game.n-1 and (self.game.cboard[self.x][self.y + 1] == 'T' 
@@ -125,11 +126,11 @@ class Barbarian():
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
                     else:
-                        building.color = brickCOLOR[building.health]
+                        building.color = brickCOLOR[math.floor(building.health)]
                 elif(building.x == self.x and building.y == self.y + 1):
                     building.health -= self.damage
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
                     else:
-                        building.color = brickCOLOR[building.health]
+                        building.color = brickCOLOR[math.floor(building.health)]
             return

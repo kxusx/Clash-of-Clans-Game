@@ -44,6 +44,7 @@ class King():
                 self.direction = 'd'
         if(self.x==2 and self.y==12):
             self.health-=4
+            self.color = brickCOLOR[self.health]
 
     def attack(self):
         if(self.direction == 'w'):

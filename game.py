@@ -7,6 +7,7 @@ from src.huts import Hut
 from src.barbarian import Barbarian
 from src.cannon import Cannon
 from src.spells import Spells
+from src.archer import Archer
 import time
 from src.king import King
 from colorama import Back
@@ -14,6 +15,39 @@ from colorama import Fore, Back, Style
 from src.wall import Wall
 from playsound import playsound
 colorama.init()
+
+def addHutAndCannon():
+    cannon = Cannon(game,10,10,1,6)
+    game.addCannon(cannon)
+    game.addBuilding(cannon)
+
+    cannon = Cannon(game,15,20,1,6)
+    game.addCannon(cannon)
+    game.addBuilding(cannon)
+
+    cannon = Cannon(game,25,28,1,6)
+    game.addCannon(cannon)
+    game.addBuilding(cannon)
+
+    hut = Hut(game,2,4)
+    game.addHut(hut)
+    game.addBuilding(hut)
+
+    hut = Hut(game,5,6)
+    game.addHut(hut)
+    game.addBuilding(hut)
+
+    hut = Hut(game,17,20)
+    game.addHut(hut)
+    game.addBuilding(hut)
+
+    hut = Hut(game,20,25)
+    game.addHut(hut)
+    game.addBuilding(hut)
+
+    hut = Hut(game,26,29)
+    game.addHut(hut)
+    game.addBuilding(hut)
 
 emptyBoard = []
 m=30  # rows
@@ -33,38 +67,7 @@ game.addBuilding(townHall)
 king = King(game,5,20,1)
 game.addKing(king)
 
-
-cannon = Cannon(game,10,10,1,6)
-game.addCannon(cannon)
-game.addBuilding(cannon)
-
-cannon = Cannon(game,15,20,1,6)
-game.addCannon(cannon)
-game.addBuilding(cannon)
-
-cannon = Cannon(game,25,28,1,6)
-game.addCannon(cannon)
-game.addBuilding(cannon)
-
-hut = Hut(game,2,4)
-game.addHut(hut)
-game.addBuilding(hut)
-
-hut = Hut(game,5,6)
-game.addHut(hut)
-game.addBuilding(hut)
-
-hut = Hut(game,17,20)
-game.addHut(hut)
-game.addBuilding(hut)
-
-hut = Hut(game,20,25)
-game.addHut(hut)
-game.addBuilding(hut)
-
-hut = Hut(game,26,29)
-game.addHut(hut)
-game.addBuilding(hut)
+addHutAndCannon()
 
 for i in range(12,17):
     wall = Wall(game,12,i)
@@ -125,6 +128,15 @@ while game.status=='playing':
             barbarian.display()
             barbarian.move()
             barbarian.attack()
+    
+    for archer in game.archers:
+        if(archer.health<=0):
+            game.archers.remove(archer)
+            noOfPersons -= 1
+        else:
+            archer.display()
+            archer.move()
+            archer.attack()
 
     
     if(key =='q'):
@@ -142,6 +154,10 @@ while game.status=='playing':
     elif(key=='3'):
         barbarain = Barbarian(game,7,25)
         game.addBarbarain(barbarain)
+        noOfPersons += 1
+    elif(key=='4'):
+        archer = Archer(game,1,1)
+        game.addArcher(archer)
         noOfPersons += 1
     elif(key=='r'):
         spell.rage()
