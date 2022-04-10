@@ -19,6 +19,9 @@ class Game():
         self.n=n
         self.m=m    
         
+    #----------------------------------------------------------------------------------------------------------------------
+    # PERSONS
+    
     def addKing(self, king):
         self.king = king
         self.persons.append(king)
@@ -28,25 +31,7 @@ class Game():
         self.queen = queen
         self.persons.append(queen)
         # self.cboard[self.queen.y][self.queen.x] = self.queen.char
-
-    def addTownHall(self, townHall):
-        self.townHall = townHall
-        # self.cboard[self.townHall.y][self.townHall.x] = self.townHall.char
     
-    def addHut(self, hut):
-        self.huts.append(hut)
-        # self.cboard[hut.y][hut.x] = hut.char
-    
-    def addWizardTower(self, wizardTower):
-        self.wizardTowers.append(wizardTower)
-        # self.cboard[self.wizardTower.y][self.wizardTower.x] = self.wizardTower.char
-    
-    def addBuilding(self, building):
-        self.buildings.append(building)
-        if(building.char=='H' or building.char=='T' or building.char=='C'):
-            self.noOfBuildings += 1
-        # self.cboard[building.y][building.x] = building.char
-
     def addBarbarain(self, barbarian):
         self.barbarians.append(barbarian)
         self.persons.append(barbarian)
@@ -54,13 +39,36 @@ class Game():
     def addArcher(self, archer):
         self.archers.append(archer)
         self.persons.append(archer)
-    
-    def addCannon(self, cannon):
-        self.cannons.append(cannon)
-    
+
     def addBallon(self, ballon):
         self.ballons.append(ballon)
         self.persons.append(ballon)
+
+    #-----------------------------------------------------------------
+    # BUILDINGS
+
+    def addTownHall(self, townHall):
+        self.townHall = townHall
+        self.addBuilding(townHall)
+    
+    def addHut(self, hut):
+        self.huts.append(hut)
+        self.addBuilding(hut)
+    
+    def addWizardTower(self, wizardTower):
+        self.wizardTowers.append(wizardTower)
+        self.addBuilding(wizardTower)
+    
+    def addCannon(self, cannon):
+        self.cannons.append(cannon)
+        self.addBuilding(cannon)
+    
+    def addBuilding(self, building):
+        self.buildings.append(building)
+        if(building.char=='H' or building.char=='T' or building.char=='C'):
+            self.noOfBuildings += 1
+        
+    #-----------------------------------------------------------------
 
     def display(self):
         self.board[2][12]='U'

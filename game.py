@@ -22,43 +22,33 @@ colorama.init()
 def addHutCannonTower():
     cannon = Cannon(game,10,10,1,6)
     game.addCannon(cannon)
-    game.addBuilding(cannon)
-
-    # cannon = Cannon(game,15,20,1,6)
-    # game.addCannon(cannon)
-    # game.addBuilding(cannon)
-
+    
+    cannon = Cannon(game,15,20,1,6)
+    game.addCannon(cannon)
+    
     cannon = Cannon(game,25,28,1,6)
     game.addCannon(cannon)
-    game.addBuilding(cannon)
-
+    
     wizardTower = WizardTower(game,15,10,3,6)
     game.addWizardTower(wizardTower)
-    game.addBuilding(wizardTower)
-
+    
     wizardTower = WizardTower(game,15,18,5,6)
     game.addWizardTower(wizardTower)
-    game.addBuilding(wizardTower)
-
+    
     hut = Hut(game,2,4)
     game.addHut(hut)
-    game.addBuilding(hut)
-
+    
     hut = Hut(game,5,6)
     game.addHut(hut)
-    game.addBuilding(hut)
+    
+    hut = Hut(game,17,20)
+    game.addHut(hut)
 
-    # hut = Hut(game,17,20)
-    # game.addHut(hut)
-    # game.addBuilding(hut)
-
-    # hut = Hut(game,20,25)
-    # game.addHut(hut)
-    # game.addBuilding(hut)
+    hut = Hut(game,20,25)
+    game.addHut(hut)
 
     hut = Hut(game,26,29)
     game.addHut(hut)
-    game.addBuilding(hut)
 
 emptyBoard = []
 m=30  # rows

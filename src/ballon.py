@@ -17,6 +17,7 @@ class Ballon():
         self.height = 1
         self.speed = 2
         self.direction = 'w'
+        self.range=1
         self.status = 'alive'
 
     def move(self):
