@@ -9,6 +9,8 @@ from src.cannon import Cannon
 from src.spells import Spells
 from src.archer import Archer
 from src.ballon import Ballon
+from src.archerQueen import ArcherQueen
+from src.wizardTower import WizardTower
 import time
 from src.king import King
 from colorama import Back
@@ -17,18 +19,26 @@ from src.wall import Wall
 from playsound import playsound
 colorama.init()
 
-def addHutAndCannon():
+def addHutCannonTower():
     cannon = Cannon(game,10,10,1,6)
     game.addCannon(cannon)
     game.addBuilding(cannon)
 
-    cannon = Cannon(game,15,20,1,6)
-    game.addCannon(cannon)
-    game.addBuilding(cannon)
+    # cannon = Cannon(game,15,20,1,6)
+    # game.addCannon(cannon)
+    # game.addBuilding(cannon)
 
     cannon = Cannon(game,25,28,1,6)
     game.addCannon(cannon)
     game.addBuilding(cannon)
+
+    wizardTower = WizardTower(game,15,10,3,6)
+    game.addWizardTower(wizardTower)
+    game.addBuilding(wizardTower)
+
+    wizardTower = WizardTower(game,15,18,5,6)
+    game.addWizardTower(wizardTower)
+    game.addBuilding(wizardTower)
 
     hut = Hut(game,2,4)
     game.addHut(hut)
@@ -38,13 +48,13 @@ def addHutAndCannon():
     game.addHut(hut)
     game.addBuilding(hut)
 
-    hut = Hut(game,17,20)
-    game.addHut(hut)
-    game.addBuilding(hut)
+    # hut = Hut(game,17,20)
+    # game.addHut(hut)
+    # game.addBuilding(hut)
 
-    hut = Hut(game,20,25)
-    game.addHut(hut)
-    game.addBuilding(hut)
+    # hut = Hut(game,20,25)
+    # game.addHut(hut)
+    # game.addBuilding(hut)
 
     hut = Hut(game,26,29)
     game.addHut(hut)
@@ -65,10 +75,13 @@ townHall=TownHall(game,15,15)
 game.addTownHall(townHall)
 game.addBuilding(townHall)
 
-king = King(game,5,20,1)
+king = King(game,5,20,2)
 game.addKing(king)
 
-addHutAndCannon()
+queen = ArcherQueen(game,5,20,1)
+game.addQueen(queen)
+
+addHutCannonTower()
 
 for i in range(12,17):
     wall = Wall(game,12,i)
@@ -92,10 +105,15 @@ replaySteps = {}
 noOfPersons = 1
 counter=0
 
+# choice = input ("Enter king(1) or queen(2) : ")
+choice=2
+
 while game.status=='playing':
     timenow = int(time.time()-initTime)
-    
-    lifecard = "Health: " + ' | '*king.health + ' - '*(10-king.health) + "\t\t\t\t\t"
+    if choice == "1":
+        lifecard = "Health: " + ' | '*king.health + ' - '*(10-king.health) + "\t\t\t\t\t"
+    else :
+        lifecard = "Health: " + ' | '*queen.health + ' - '*(10-queen.health) + "\t\t\t\t\t"
     key = get_input()
     game.board = copy.deepcopy(emptyBoard)
     game.cboard = copy.deepcopy(emptyBoard)
@@ -120,6 +138,9 @@ while game.status=='playing':
 
     for cannon in game.cannons:
         cannon.attack()
+
+    for wizardTower in game.wizardTowers:
+        wizardTower.attack()
 
     for barbarian in game.barbarians:
         if(barbarian.health<=0):
@@ -151,7 +172,10 @@ while game.status=='playing':
     if(key =='q'):
         game.status="over"
     elif(key == ' '):
-        king.attack()
+        if choice == "1":
+            king.attack()
+        else:
+            queen.attack()
     elif(key == '1'):
         barbarain = Barbarian(game,0,17)
         game.addBarbarain(barbarain)
@@ -181,11 +205,18 @@ while game.status=='playing':
 
     replaySteps[counter] = key
 
-    if(king.health>=0):
-        king.display()
-        king.move(key)
-    else:
-        noOfPersons-=1
+    if choice == "1":
+        if(king.health>=0):
+            king.display()
+            king.move(key)
+        else:
+            noOfPersons-=1
+    else :
+        if(queen.health>=0):
+            queen.display()
+            queen.move(key)
+        else:
+            noOfPersons-=1
     
     game.display()
     print(lifecard)

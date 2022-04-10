@@ -22,7 +22,7 @@ class Barbarian():
     def move(self):
         minDist = 10000
         for building in self.game.buildings:
-            if(building.char=='T' or building.char=='H' or building.char=='C'):
+            if(building.char=='T' or building.char=='H' or building.char=='C' or building.char=='W'):
                 dist = abs(building.x - self.x) + abs(building.y - self.y)
                 if(dist < minDist):
                     minDist = dist
@@ -62,7 +62,8 @@ class Barbarian():
         if(self.x > 0 and (self.game.cboard[self.x - 1][self.y] == 'T' 
            or self.game.cboard[self.x - 1][self.y] == 'H' 
            or self.game.cboard[self.x - 1][self.y] == 'C'
-           or self.game.cboard[self.x - 1][self.y] == '#')):
+           or self.game.cboard[self.x - 1][self.y] == '#'
+           or self.game.cboard[self.x - 1][self.y] == 'W')):
             for building in self.game.buildings:
                 if(self.game.cboard[self.x - 1][self.y] == 'T' and building.char == 'T'):
                     building.health -= self.damage
@@ -81,7 +82,8 @@ class Barbarian():
         if(self.y > 0 and (self.game.cboard[self.x][self.y - 1] == 'T' 
            or self.game.cboard[self.x][self.y - 1] == 'H' 
            or self.game.cboard[self.x][self.y - 1] == 'C'
-           or self.game.cboard[self.x][self.y - 1] == '#')):
+           or self.game.cboard[self.x][self.y - 1] == '#'
+           or self.game.cboard[self.x][self.y - 1] == 'W')):
             for building in self.game.buildings:
                 if(self.game.cboard[self.x][self.y - 1] == 'T' and building.char == 'T'):
                     building.health -= self.damage
@@ -100,7 +102,8 @@ class Barbarian():
         if(self.x < self.game.m-1 and (self.game.cboard[self.x + 1][self.y] == 'T' 
            or self.game.cboard[self.x + 1][self.y] == 'H' 
            or self.game.cboard[self.x + 1][self.y] == 'C'
-           or self.game.cboard[self.x + 1][self.y] == '#')):
+           or self.game.cboard[self.x + 1][self.y] == '#'
+           or self.game.cboard[self.x + 1][self.y] == 'W')):
             for building in self.game.buildings:
                 if(self.game.cboard[self.x + 1][self.y] == 'T' and building.char == 'T'):
                     building.health -= self.damage
@@ -119,7 +122,8 @@ class Barbarian():
         if(self.y < self.game.n-1 and (self.game.cboard[self.x][self.y + 1] == 'T' 
            or self.game.cboard[self.x][self.y + 1] == 'H' 
            or self.game.cboard[self.x][self.y + 1] == 'C'
-           or self.game.cboard[self.x][self.y + 1] == '#')):
+           or self.game.cboard[self.x][self.y + 1] == '#'
+           or self.game.cboard[self.x][self.y + 1] == 'W')):
             for building in self.game.buildings:
                 if(self.game.cboard[self.x][self.y + 1] == 'T' and building.char == 'T'):
                     building.health -= self.damage

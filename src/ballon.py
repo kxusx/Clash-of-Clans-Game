@@ -91,18 +91,18 @@ class Ballon():
             self.game.cboard = cArr
 
     def attack(self):
-        if(self.x > 0 and (self.game.cboard[self.x - 1][self.y] == 'T' 
-           or self.game.cboard[self.x - 1][self.y] == 'H' 
-           or self.game.cboard[self.x - 1][self.y] == 'C'
+        if(self.x > 0 and (self.game.cboard[self.x - self.range][self.y] == 'T' 
+           or self.game.cboard[self.x - self.range][self.y] == 'H' 
+           or self.game.cboard[self.x - self.range][self.y] == 'C'
            )):
             for building in self.game.buildings:
-                if(self.game.cboard[self.x - 1][self.y] == 'T' and building.char == 'T'):
+                if(self.game.cboard[self.x - self.range][self.y] == 'T' and building.char == 'T'):
                     building.health -= self.damage
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
                     else:
                         building.color = brickCOLOR[math.floor(building.health)]
-                elif(building.x == self.x - 1 and building.y == self.y):
+                elif(building.x == self.x - self.range and building.y == self.y):
                     building.health -= self.damage
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
@@ -110,18 +110,18 @@ class Ballon():
                         building.color = brickCOLOR[math.floor(building.health)]
             return
 
-        if(self.y > 0 and (self.game.cboard[self.x][self.y - 1] == 'T' 
-           or self.game.cboard[self.x][self.y - 1] == 'H' 
-           or self.game.cboard[self.x][self.y - 1] == 'C'
+        if(self.y > 0 and (self.game.cboard[self.x][self.y - self.range] == 'T' 
+           or self.game.cboard[self.x][self.y - self.range] == 'H' 
+           or self.game.cboard[self.x][self.y - self.range] == 'C'
            )):
             for building in self.game.buildings:
-                if(self.game.cboard[self.x][self.y - 1] == 'T' and building.char == 'T'):
+                if(self.game.cboard[self.x][self.y - self.range] == 'T' and building.char == 'T'):
                     building.health -= self.damage
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
                     else:
                         building.color = brickCOLOR[math.floor(building.health)]
-                elif(building.x == self.x and building.y == self.y - 1):
+                elif(building.x == self.x and building.y == self.y - self.range):
                     building.health -= self.damage
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
@@ -129,18 +129,18 @@ class Ballon():
                         building.color = brickCOLOR[math.floor(building.health)]
             return
 
-        if(self.x < self.game.m-1 and (self.game.cboard[self.x + 1][self.y] == 'T' 
-           or self.game.cboard[self.x + 1][self.y] == 'H' 
-           or self.game.cboard[self.x + 1][self.y] == 'C'
+        if(self.x < self.game.m-self.range and (self.game.cboard[self.x + self.range][self.y] == 'T' 
+           or self.game.cboard[self.x + self.range][self.y] == 'H' 
+           or self.game.cboard[self.x + self.range][self.y] == 'C'
            )):
             for building in self.game.buildings:
-                if(self.game.cboard[self.x + 1][self.y] == 'T' and building.char == 'T'):
+                if(self.game.cboard[self.x + self.range][self.y] == 'T' and building.char == 'T'):
                     building.health -= self.damage
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
                     else:
                         building.color = brickCOLOR[math.floor(building.health)]
-                elif(building.x == self.x + 1 and building.y == self.y):
+                elif(building.x == self.x + self.range and building.y == self.y):
                     building.health -= self.damage
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
@@ -148,18 +148,18 @@ class Ballon():
                         building.color = brickCOLOR[math.floor(building.health)]
             return
 
-        if(self.y < self.game.n-1 and (self.game.cboard[self.x][self.y + 1] == 'T' 
-           or self.game.cboard[self.x][self.y + 1] == 'H' 
-           or self.game.cboard[self.x][self.y + 1] == 'C'
+        if(self.y < self.game.n-self.range and (self.game.cboard[self.x][self.y + self.range] == 'T' 
+           or self.game.cboard[self.x][self.y + self.range] == 'H' 
+           or self.game.cboard[self.x][self.y + self.range] == 'C'
            )):
             for building in self.game.buildings:
-                if(self.game.cboard[self.x][self.y + 1] == 'T' and building.char == 'T'):
+                if(self.game.cboard[self.x][self.y + self.range] == 'T' and building.char == 'T'):
                     building.health -= self.damage
                     if(building.health<=0):
                         building.color = brickCOLOR[0]
                     else:
                         building.color = brickCOLOR[math.floor(building.health)]
-                elif(building.x == self.x and building.y == self.y + 1):
+                elif(building.x == self.x and building.y == self.y + self.range):
                     building.health -= self.damage
                     if(building.health<=0):
                         building.color = brickCOLOR[0]

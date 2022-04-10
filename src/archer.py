@@ -31,6 +31,11 @@ class Archer():
             jump = 5*self.speed
             #-----------------------------------------------------
             if(minBuilding.x > self.x):
+                for i in range(self.speed+1):
+                    if(self.game.cboard[self.x + i][self.y] == '#'):
+                        self.attackWall(self.x+i, self.y)
+                        return
+
                 if(abs(minBuilding.x-self.x) <= self.speed):
                     jump = abs(minBuilding.x-self.x)-1
                     if(jump == 0):
@@ -41,12 +46,13 @@ class Archer():
                     self.x += jump
                     self.direction = 's'
 
-                for i in range(self.speed+1):
-                    if(self.game.cboard[self.x + i][self.y] == '#'):
-                        self.attackWall(self.x+i, self.y)
-                        break
+                
             #-----------------------------------------------------
             elif(minBuilding.x < self.x):
+                for i in range(self.speed+1):
+                    if(self.game.cboard[self.x - i][self.y] == '#'):
+                        self.attackWall(self.x-i, self.y)
+                        return
 
                 if(abs(minBuilding.x-self.x) <= self.speed):
                     jump = abs(minBuilding.x-self.x)-1
@@ -57,14 +63,16 @@ class Archer():
                 if(self.x > 0 and (self.game.cboard[self.x - jump][self.y] == 'X' or self.game.cboard[self.x - jump][self.y] == 'B')):
                     self.x -= jump
                     self.direction = 'w'
-                for i in range(self.speed+1):
-                    if(self.game.cboard[self.x - i][self.y] == '#'):
-                        self.attackWall(self.x-i, self.y)
-                        break
+                
             #-----------------------------------------------------
             jump = 5*self.speed
             #-----------------------------------------------------
             if(minBuilding.y > self.y):
+                for i in range(self.speed+1):
+                    if(self.game.cboard[self.x][self.y + i] == '#'):
+                        self.attackWall(self.x, self.y+i)
+                        return
+
                 if(abs(minBuilding.y-self.y) <= self.speed):
                     jump = abs(minBuilding.y-self.y)-1
                     if(jump == 0):
@@ -74,13 +82,14 @@ class Archer():
                 if(self.y < self.game.n-1 and (self.game.cboard[self.x][self.y + jump] == 'X' or self.game.cboard[self.x][self.y + jump] == 'B')):
                     self.y += jump
                     self.direction = 'd'
-                for i in range(self.speed+1):
-                    if(self.game.cboard[self.x][self.y + i] == '#'):
-
-                        self.attackWall(self.x, self.y+i)
-                        break
+                
             #-----------------------------------------------------
             elif(minBuilding.y < self.y):
+                for i in range(self.speed+1):
+                    if(self.game.cboard[self.x][self.y - i] == '#'):
+                        self.attackWall(self.x, self.y-i)
+                        return
+
                 if(abs(minBuilding.y-self.y) <= self.speed):
                     jump = abs(minBuilding.y-self.y)-1
                     if(jump == 0):
@@ -90,11 +99,7 @@ class Archer():
                 if(self.y > 0 and (self.game.cboard[self.x][self.y - jump] == 'X' or self.game.cboard[self.x][self.y - jump] == 'B')):
                     self.y -= jump
                     self.direction = 'a'
-                for i in range(self.speed+1):
-                    if(self.game.cboard[self.x][self.y - i] == '#'):
 
-                        self.attackWall(self.x, self.y-i)
-                        break
             #-----------------------------------------------------
 
     def display(self):
