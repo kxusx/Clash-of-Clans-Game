@@ -5,10 +5,10 @@ from colorama import Fore, Back, Style
 
 
 class Barbarian():
-    def __init__(self, game, x, y):
+    def __init__(self, game, x, y,spawnTime):
         self.game = game
         self.health = 10
-        self.damage = 1
+        self.damage = 2
         self.color = brickCOLOR[self.health]
         self.char = 'B'
         self.x = x
@@ -18,8 +18,9 @@ class Barbarian():
         self.speed = 1
         self.direction = 'w'
         self.status = 'alive'
+        self.spawnTime = spawnTime
 
-    def move(self):
+    def move(self,timenow):
         minDist = 10000
         for building in self.game.buildings:
             if(building.char=='T' or building.char=='H' or building.char=='C' or building.char=='W'):
@@ -27,25 +28,25 @@ class Barbarian():
                 if(dist < minDist):
                     minDist = dist
                     minBuilding = building
+        if((self.spawnTime-timenow)%2==0):
+            if(minDist<1000):
+                if(minBuilding.x > self.x):
+                    if(self.x < self.game.m-1 and (self.game.cboard[self.x + 1][self.y] == 'X' or self.game.cboard[self.x + 1][self.y] == 'B')):
+                        self.x += self.speed
+                        self.direction = 's'            
+                elif(minBuilding.x < self.x):
+                    if(self.x > 0 and (self.game.cboard[self.x - 1][self.y] == 'X' or self.game.cboard[self.x - 1][self.y] == 'B')):
+                        self.x -= self.speed
+                        self.direction = 'w'
 
-        if(minDist<1000):
-            if(minBuilding.x > self.x):
-                if(self.x < self.game.m-1 and (self.game.cboard[self.x + 1][self.y] == 'X' or self.game.cboard[self.x + 1][self.y] == 'B')):
-                    self.x += self.speed
-                    self.direction = 's'            
-            elif(minBuilding.x < self.x):
-                if(self.x > 0 and (self.game.cboard[self.x - 1][self.y] == 'X' or self.game.cboard[self.x - 1][self.y] == 'B')):
-                    self.x -= self.speed
-                    self.direction = 'w'
-
-            if(minBuilding.y > self.y):
-                if(self.y < self.game.n-1 and (self.game.cboard[self.x][self.y + 1] == 'X' or self.game.cboard[self.x][self.y + 1] == 'B')):
-                    self.y += self.speed
-                    self.direction = 'd'
-            elif(minBuilding.y < self.y):
-                if(self.y > 0 and (self.game.cboard[self.x][self.y - 1] == 'X' or self.game.cboard[self.x][self.y - 1] == 'B')):
-                    self.y -= self.speed
-                    self.direction = 'a'
+                if(minBuilding.y > self.y):
+                    if(self.y < self.game.n-1 and (self.game.cboard[self.x][self.y + 1] == 'X' or self.game.cboard[self.x][self.y + 1] == 'B')):
+                        self.y += self.speed
+                        self.direction = 'd'
+                elif(minBuilding.y < self.y):
+                    if(self.y > 0 and (self.game.cboard[self.x][self.y - 1] == 'X' or self.game.cboard[self.x][self.y - 1] == 'B')):
+                        self.y -= self.speed
+                        self.direction = 'a'
 
     def display(self):
         if(self.health > 0):

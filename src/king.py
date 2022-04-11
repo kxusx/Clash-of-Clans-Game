@@ -26,6 +26,7 @@ class King():
             self.game.board = arr
 
     def move(self, dir):
+        
         if(dir == 'w'):  # w
             if(self.x > 0 and self.game.cboard[self.x - 1][self.y] == 'X'):
                 self.x -= 1
@@ -51,14 +52,15 @@ class King():
             if(self.x > 0 and (self.game.cboard[self.x - 1][self.y] == 'T' 
             or self.game.cboard[self.x - 1][self.y] == 'H' 
             or self.game.cboard[self.x - 1][self.y] == 'C' 
-            or self.game.cboard[self.x - 1][self.y] == '#')):
+            or self.game.cboard[self.x - 1][self.y] == '#'
+            or self.game.cboard[self.x - 1][self.y] == 'W')):
                 for building in self.game.buildings:
                     if(self.game.cboard[self.x - 1][self.y] == 'T' and building.char == 'T'):
                         building.health -= self.damage
-                        playsound("src/bullet1.mov")
+                        # playsound("src/bullet1.mov")
                         building.color = brickCOLOR[building.health]    
                     elif(building.x == self.x - 1 and building.y == self.y):
-                        playsound("src/bullet1.mov")
+                        # playsound("src/bullet1.mov")
                         building.health -= self.damage
                         building.color = brickCOLOR[building.health]    
                         
@@ -67,45 +69,48 @@ class King():
             if(self.y > 0 and (self.game.cboard[self.x][self.y - 1] == 'T' 
                or self.game.cboard[self.x][self.y - 1] == 'H' 
                or self.game.cboard[self.x][self.y - 1] == 'C'
-               or self.game.cboard[self.x][self.y - 1] == '-')):
+               or self.game.cboard[self.x][self.y - 1] == '#'
+               or self.game.cboard[self.x][self.y - 1] == 'W')):
                 for building in self.game.buildings:
                     if(self.game.cboard[self.x][self.y - 1] == 'T' and building.char == 'T'):
                         building.health -= self.damage
-                        playsound("src/bullet1.mov")
+                        # playsound("src/bullet1.mov")
                         building.color = brickCOLOR[building.health]
                     elif(building.x == self.x and building.y == self.y - 1):
                         building.health -= self.damage
-                        playsound("src/bullet1.mov")
+                        # playsound("src/bullet1.mov")
                         building.color = brickCOLOR[building.health]
 
         if(self.direction == 's'):
             if(self.x < self.game.m-1 and (self.game.cboard[self.x + 1][self.y] == 'T' 
                or self.game.cboard[self.x + 1][self.y] == 'H' 
                or self.game.cboard[self.x + 1][self.y] == 'C'
-               or self.game.cboard[self.x + 1][self.y] == '#')):
+               or self.game.cboard[self.x + 1][self.y] == '#'
+               or self.game.cboard[self.x + 1][self.y] == 'W')):
                 for building in self.game.buildings:
                     if(self.game.cboard[self.x + 1][self.y] == 'T' and building.char == 'T'):
                         building.health -= self.damage
-                        playsound("src/bullet1.mov")
+                        # playsound("src/bullet1.mov")
                         building.color = brickCOLOR[building.health]
                     elif(building.x == self.x + 1 and building.y == self.y):
                         building.health -= self.damage
-                        playsound("src/bullet1.mov")
+                        # playsound("src/bullet1.mov")
                         building.color = brickCOLOR[building.health]
                
         if(self.direction == 'd'):
             if(self.y < self.game.n-1 and (self.game.cboard[self.x][self.y + 1] == 'T' 
                or self.game.cboard[self.x][self.y + 1] == 'H' 
                or self.game.cboard[self.x][self.y + 1] == 'C'
-               or self.game.cboard[self.x][self.y + 1] == '#')):
+               or self.game.cboard[self.x][self.y + 1] == '#'
+               or self.game.cboard[self.x][self.y + 1] == 'W')):
                 for building in self.game.buildings:
                     if(self.game.cboard[self.x][self.y + 1] == 'T' and building.char == 'T'):
                         building.health -= self.damage
-                        playsound("src/bullet1.mov")
+                        # playsound("src/bullet1.mov")
                         building.color = brickCOLOR[building.health]
                     elif(building.x == self.x and building.y == self.y + 1):
                         building.health -= self.damage
-                        playsound("src/bullet1.mov")
+                        # playsound("src/bullet1.mov")
                         building.color = brickCOLOR[building.health]
         
     def leviathonAttack(self,range):

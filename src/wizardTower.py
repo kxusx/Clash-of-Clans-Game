@@ -2,13 +2,14 @@ from src.utils import brickCOLOR
 import colorama
 from colorama import Fore, Back, Style
 from src.building import Building
+import math
 
 class WizardTower(Building):
 
     def __init__(self,game,x,y,damage,range):
         super().__init__(game,x,y,1,1,'W')
         self.range= range
-        self.damage = damage
+        self.damage = 0.5
     
     def display(self):
         cArr = self.game.cboard
@@ -32,8 +33,10 @@ class WizardTower(Building):
                 for person in self.game.persons:
                     if(person.x>=centerX-1 and person.x<=centerX+1 and person.y>=centerY-1 and person.y<=centerY+1):
                         person.health-=self.damage
-                        person.color = brickCOLOR[person.health]
+        
                         if(person.health<=0):
-                            person.status='dead'
                             self.game.persons.remove(person)
+                            person.color=brickCOLOR[0]
+                        else:
+                            person.color = brickCOLOR[math.floor(person.health)]
                         return

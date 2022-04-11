@@ -16,12 +16,17 @@ class Game():
         self.wizardTowers=[]
         self.persons=[] # king, queen, archer, barbarian, ballon
         self.noOfBuildings = 0
+        self.noOfBarbarians = 0
+        self.noOfArchers = 0
+        self.noOfBallons = 0
         self.n=n
         self.m=m    
+        self.level=1
         
     #----------------------------------------------------------------------------------------------------------------------
     # PERSONS
-    
+    # KING , QUEEN 
+    # ARCHER , BARBARIAN , BALLON
     def addKing(self, king):
         self.king = king
         self.persons.append(king)
@@ -34,18 +39,22 @@ class Game():
     
     def addBarbarain(self, barbarian):
         self.barbarians.append(barbarian)
+        self.noOfBarbarians += 1
         self.persons.append(barbarian)
 
     def addArcher(self, archer):
         self.archers.append(archer)
+        self.noOfArchers += 1
         self.persons.append(archer)
 
     def addBallon(self, ballon):
         self.ballons.append(ballon)
+        self.noOfBallons += 1
         self.persons.append(ballon)
 
     #-----------------------------------------------------------------
     # BUILDINGS
+    # HUT , TOWNHALL , CANNON , WIZARDTOWER, WALL
 
     def addTownHall(self, townHall):
         self.townHall = townHall
@@ -65,7 +74,7 @@ class Game():
     
     def addBuilding(self, building):
         self.buildings.append(building)
-        if(building.char=='H' or building.char=='T' or building.char=='C'):
+        if(building.char=='H' or building.char=='T' or building.char=='C' or building.char=='W'):
             self.noOfBuildings += 1
         
     #-----------------------------------------------------------------

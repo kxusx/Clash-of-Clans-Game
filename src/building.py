@@ -2,7 +2,7 @@ from src.utils import brickCOLOR
 import colorama
 from colorama import Fore, Back, Style
 
-
+ 
 class Building(): 
     def __init__(self,game,x,y,width,height,type):
         self.game = game

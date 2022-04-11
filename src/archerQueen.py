@@ -3,6 +3,7 @@ from src.utils import brickCOLOR
 import colorama
 from colorama import Fore, Back, Style
 from playsound import playsound
+import math
 
 
 class ArcherQueen():
@@ -58,8 +59,10 @@ class ArcherQueen():
                 if(building.char == 'T' or building.char == 'H' or building.char == 'C' or building.char=='#'):
                     if(building.x >= centerX-2 and building.x <= centerX+2 and building.y >= centerY-2 and building.y<=centerY+2):
                         building.health -= self.damage
-                        building.color = brickCOLOR[building.health]
-
+                        if(building.health<=0):
+                            building.color = brickCOLOR[0]
+                        else:
+                            building.color = brickCOLOR[math.floor(building.health)]
                         
         if(self.direction == 'a'):
             centerX = self.x
@@ -71,7 +74,10 @@ class ArcherQueen():
                 if(building.char == 'T' or building.char == 'H' or building.char == 'C' or building.char=='#'):
                     if(building.x >= centerX-2 and building.x <= centerX+2 and building.y >= centerY-2 and building.y<=centerY+2):
                         building.health -= self.damage
-                        building.color = brickCOLOR[building.health]
+                        if(building.health<=0):
+                            building.color = brickCOLOR[0]
+                        else:
+                            building.color = brickCOLOR[math.floor(building.health)]
 
 
         if(self.direction == 's'):
@@ -84,7 +90,10 @@ class ArcherQueen():
                 if(building.char == 'T' or building.char == 'H' or building.char == 'C' or building.char=='#'):
                      if(building.x >= centerX-2 and building.x <= centerX+2 and building.y >= centerY-2 and building.y<=centerY+2):
                         building.health -= self.damage
-                        building.color = brickCOLOR[building.health]
+                        if(building.health<=0):
+                            building.color = brickCOLOR[0]
+                        else:
+                            building.color = brickCOLOR[math.floor(building.health)]
 
         if(self.direction == 'd'):
             centerX = self.x
@@ -96,4 +105,7 @@ class ArcherQueen():
                 if(building.char == 'T' or building.char == 'H' or building.char == 'C' or building.char=='#'):
                      if(building.x >= centerX-2 and building.x <= centerX+2 and building.y >= centerY-2 and building.y<=centerY+2):
                         building.health -= self.damage
-                        building.color = brickCOLOR[building.health]
+                        if(building.health<=0):
+                            building.color = brickCOLOR[0]
+                        else:
+                            building.color = brickCOLOR[math.floor(building.health)]

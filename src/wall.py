@@ -6,7 +6,7 @@ from src.building import Building
 class Wall(Building):
     def __init__(self, game, x, y):
         super().__init__(game, x, y, 1, 1, '#')
-        
+         
     def display(self):
         if(self.health>0):
             cArr = self.game.cboard
